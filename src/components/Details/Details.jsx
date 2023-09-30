@@ -53,7 +53,7 @@ export default function Details() {
                   alt={movie.title}
                 />
                 <CardContent>
-                  <Typography>{movie.title}</Typography>
+                  <Typography variant="h3">{movie.title}</Typography>
                   <Typography>{movie.description}</Typography>
                 </CardContent>
               </Card>

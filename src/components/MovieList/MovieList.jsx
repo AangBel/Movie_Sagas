@@ -40,7 +40,7 @@ function MovieList() {
                       onClick={pushToDetails}
                     />
                     <CardContent>
-                      <Typography variant="h5">{movie.title}</Typography>
+                      <Typography variant="h3">{movie.title}</Typography>
                     </CardContent>
                   </CardActionArea>
                 </Card>
