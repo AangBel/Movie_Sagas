@@ -1,32 +1,48 @@
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import './MovieList.css'
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import "./MovieList.css";
+
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
+import Grid from "@mui/material/Grid";
+import { Box, CardActionArea, CardMedia } from "@mui/material";
+import Typography from "@mui/material/Typography";
 
 function MovieList() {
+  const dispatch = useDispatch();
+  const movies = useSelector((store) => store.movies);
 
-    const dispatch = useDispatch();
-    const movies = useSelector(store => store.movies);
+  useEffect(() => {
+    dispatch({ type: "FETCH_MOVIES" });
+  }, []);
 
-    useEffect(() => {
-        dispatch({ type: 'FETCH_MOVIES' });
-    }, []);
-
-    return (
-        <main>
-            <h1>MovieList</h1>
-            <section className="movies">
-                {movies.map(movie => {
-                    return (
-                        <div key={movie.id} >
-                            <h3>{movie.title}</h3>
-                            <img src={movie.poster} alt={movie.title}/>
-                        </div>
-                    );
-                })}
-            </section>
-        </main>
-
-    );
+  return (
+    <main>
+      <Box>
+        <Typography variant="h4">Movie List</Typography>
+        <section className="movies">
+          <Grid container spacing={2}>
+            {movies.map((movie) => (
+              <Grid item xs={12} sm={6} md={4} lg={3} key={movie.id}>
+                <Card>
+                  <CardActionArea>
+                    <CardMedia
+                      component="img"
+                      src={movie.poster}
+                      alt={movie.title}
+                    />
+                    <CardContent>
+                      <Typography variant="h6">{movie.title}</Typography>
+                    </CardContent>
+                  </CardActionArea>
+                </Card>
+              </Grid>
+            ))}
+          </Grid>
+        </section>
+      </Box>
+    </main>
+  );
 }
 
 export default MovieList;
