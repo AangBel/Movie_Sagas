@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import "./MovieList.css";
+import { useHistory } from "react-router-dom";
 
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
@@ -10,11 +11,17 @@ import Typography from "@mui/material/Typography";
 
 function MovieList() {
   const dispatch = useDispatch();
+  const history = useHistory();
   const movies = useSelector((store) => store.movies);
 
   useEffect(() => {
     dispatch({ type: "FETCH_MOVIES" });
   }, []);
+
+  function pushToDetails(){
+    console.log('pushToDetails function has been triggered aka clicked a movie')
+    history.push('/details');
+}
 
   return (
     <main>
@@ -30,6 +37,7 @@ function MovieList() {
                       component="img"
                       src={movie.poster}
                       alt={movie.title}
+                      onClick={pushToDetails}
                     />
                     <CardContent>
                       <Typography variant="h5">{movie.title}</Typography>
