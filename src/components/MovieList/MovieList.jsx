@@ -21,7 +21,7 @@ function MovieList() {
       <Box>
         <Typography variant="h4">Movie List</Typography>
         <section className="movies">
-          <Grid container spacing={2}>
+          <Grid container spacing={7}>
             {movies.map((movie) => (
               <Grid item xs={12} sm={6} md={4} lg={3} key={movie.id}>
                 <Card>
@@ -32,7 +32,7 @@ function MovieList() {
                       alt={movie.title}
                     />
                     <CardContent>
-                      <Typography variant="h6">{movie.title}</Typography>
+                      <Typography variant="h5">{movie.title}</Typography>
                     </CardContent>
                   </CardActionArea>
                 </Card>
