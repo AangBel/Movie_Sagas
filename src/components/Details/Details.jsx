@@ -30,14 +30,16 @@ export default function Details() {
   const dispatch = useDispatch();
   const history = useHistory();
   const movies = useSelector((store) => store.movies);
+  const genres = useSelector((store) => store.genres);
 
   useEffect(() => {
     dispatch({ type: "FETCH_MOVIES" });
+    dispatch({ type: "FETCH_GENRES" });
   }, []);
 
   function backToHome() {
     console.log("going back to home page")
-    history.push("/#");
+    history.push("/");
   }
 
   return (
@@ -55,10 +57,18 @@ export default function Details() {
                 <CardContent>
                   <Typography variant="h3">{movie.title}</Typography>
                   <Typography>{movie.description}</Typography>
+                 {genres.
+                 filter((genre) =>
+                 genre.title
+                 )
+                 .map((genre) => (
+                        <Typography key={genre.id}>{genre.name}</Typography>
+                    ))}
                 </CardContent>
               </Card>
             </Grid>
           ))}
+
         </Grid>
       </section>
       <Button variant="contained" onClick={backToHome}>
