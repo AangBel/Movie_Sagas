@@ -24,9 +24,7 @@ function MovieList() {
 }
 
   return (
-    <main>
       <Box>
-        <Typography variant="h4">Movie List</Typography>
         <section className="movies">
           <Grid container spacing={7}>
             {movies.map((movie) => (
@@ -49,7 +47,6 @@ function MovieList() {
           </Grid>
         </section>
       </Box>
-    </main>
   );
 }
 
