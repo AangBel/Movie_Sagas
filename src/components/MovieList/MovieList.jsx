@@ -9,6 +9,7 @@ import Grid from "@mui/material/Grid";
 import { Box, CardActionArea, CardMedia } from "@mui/material";
 import Typography from "@mui/material/Typography";
 
+
 function MovieList() {
   const dispatch = useDispatch();
   const history = useHistory();
@@ -46,7 +47,9 @@ function MovieList() {
                     value={movie.id}
                   />
                   <CardContent>
-                    <Typography variant="h3">{movie.title}</Typography>
+                    <Typography fontFamily="Reem Kufi"
+                    color="#9B9492"
+                    variant="h3">{movie.title}</Typography>
                   </CardContent>
                 </CardActionArea>
               </Card>

@@ -1,4 +1,12 @@
 .movies {
-    display : flex;
-    flex-wrap: wrap;
+  display: flex;
+  flex-wrap: wrap;
+  font-family: "Reem Kufi", sans-serif;
+}
+h1 {
+  text-align: center;
+}
+body {
+  font-family: "Reem Kufi", sans-serif;
+  font-size: 46px;
 }
