@@ -20,11 +20,15 @@ function MovieList() {
 
   function pushToDetails(movie) {
     console.log(
-      "pushToDetails function has been triggered aka clicked a movie, this is the movie", movie.id
+      "pushToDetails function has been triggered aka clicked a movie, this is the movie",
+      movie.id
     );
-    dispatch({ type: "SET_SELECTED_MOVIE", payload: movie});
+    dispatch({ type: "SET_SELECTED_MOVIE", payload: movie });
+    dispatch({ type: "FETCH_GENRE", payload: movie.id });
+    dispatch({ type: "SET_GENRE", payload:movie.id});
+
     history.push("/details");
-}
+  }
 
   return (
     <Box>

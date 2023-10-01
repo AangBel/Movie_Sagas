@@ -19,26 +19,29 @@ import {
   Box,
   Button,
 } from "@mui/material";
-import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 // import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { useHistory } from "react-router-dom";
 
 // import Button from '@mui/material/Button';
 
-export default function Details() {
+export default function Details({movie}) {
   const dispatch = useDispatch();
   const history = useHistory();
   const movies = useSelector((store) => store.movies);
   const selectedMovie = useSelector((store) => store.selectedMovie);
+  const genreStore = useSelector((store) => store.genreStore);
 
-  //   const genres = useSelector((store) => store.genres);
-
-  console.log(`the movie clicked on was ${movies.id}`);
+  console.log("this is the genreStore", genreStore);
   console.log("the current movie is:", selectedMovie.id);
 
-  const movieId = selectedMovie.id;
-  console.log('this is the pickedMovieStore.id', movieId);
+//   const movieIdentification = movie.id;
+//   console.log('this is the movieIdentification movie Id', movieIdentification);
+
+//   const movieId = selectedMovie.id;
+//   console.log("this is the pickedMovieStore.id", movieId);
+
+    // dispatch({ type: "SET_GENRE", payload:genreStore});
 
 
   function backToHome() {
@@ -61,13 +64,7 @@ export default function Details() {
               <CardContent>
                 <Typography variant="h3">{selectedMovie.title}</Typography>
                 <Typography>{selectedMovie.description}</Typography>
-                {/* {genres.
-                 filter((genre) =>
-                 genre.title
-                 )
-                 .map((genre) => (
-                        <Typography key={genre.id}>{genre.name}</Typography>
-                    ))} */}
+                <Typography key={genreStore.name}>{genreStore.name}</Typography>
               </CardContent>
             </Card>
           </Grid>
