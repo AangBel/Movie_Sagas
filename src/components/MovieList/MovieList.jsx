@@ -25,7 +25,7 @@ function MovieList() {
     );
     dispatch({ type: "SET_SELECTED_MOVIE", payload: movie });
     dispatch({ type: "FETCH_GENRE", payload: movie.id });
-    dispatch({ type: "SETTING_GENRE", payload:movie.id});
+    dispatch({ type: "SETTING_GENRE", payload: movie.id });
 
     history.push("/details");
   }

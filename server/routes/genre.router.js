@@ -11,7 +11,7 @@ router.get("/:id", (req, res) => {
   JOIN "genres"
   ON "genres"."id" = "movies_genres"."genre_id"
   WHERE "movies"."id" = $1`;
-  console.log('this is the movieId', movieId);
+  console.log("this is the movieId", movieId);
   pool
     .query(query, [movieId])
     .then((result) => {
