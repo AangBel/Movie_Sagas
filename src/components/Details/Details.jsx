@@ -25,24 +25,27 @@ import { useHistory } from "react-router-dom";
 
 // import Button from '@mui/material/Button';
 
-export default function Details({movie}) {
+export default function Details({ thing }) {
   const dispatch = useDispatch();
   const history = useHistory();
-  const movies = useSelector((store) => store.movies);
   const selectedMovie = useSelector((store) => store.selectedMovie);
   const genreStore = useSelector((store) => store.genreStore);
 
   console.log("this is the genreStore", genreStore);
+//   console.log("this is the movieId", movieId);
+
+
   console.log("the current movie is:", selectedMovie.id);
 
-//   const movieIdentification = movie.id;
-//   console.log('this is the movieIdentification movie Id', movieIdentification);
 
-//   const movieId = selectedMovie.id;
-//   console.log("this is the pickedMovieStore.id", movieId);
 
-    // dispatch({ type: "SET_GENRE", payload:genreStore});
+  //   const movieIdentification = movie.id;
+  //   console.log('this is the movieIdentification movie Id', movieIdentification);
 
+  //   const movieId = selectedMovie.id;
+  //   console.log("this is the pickedMovieStore.id", movieId);
+
+  // dispatch({ type: "SET_GENRE", payload:genreStore});
 
   function backToHome() {
     console.log("going back to home page");
@@ -51,20 +54,22 @@ export default function Details({movie}) {
 
   return (
     <Box>
+     
       <section className="details">
         <Grid container spacing={2}>
           <Grid item xs={12} sm={6} md={4} lg={3} key={selectedMovie.id}>
             <Card key={selectedMovie}>
               <CardMedia
                 component="img"
-                //   src={clickedMovie.id}
+                
                 src={selectedMovie.poster}
                 alt={selectedMovie.title}
               />
               <CardContent>
                 <Typography variant="h3">{selectedMovie.title}</Typography>
                 <Typography>{selectedMovie.description}</Typography>
-                <Typography key={genreStore.name}>{genreStore.name}</Typography>
+                
+                
               </CardContent>
             </Card>
           </Grid>

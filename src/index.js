@@ -2,19 +2,20 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './components/App/App.js';
-import { createStore, combineReducers, applyMiddleware } from 'redux';
+import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 // Provider allows us to use redux within our react app
 import { Provider } from 'react-redux';
 import logger from 'redux-logger';
 // Import saga middleware
 import createSagaMiddleware from 'redux-saga';
-import { takeEvery, put } from 'redux-saga/effects';
+import { takeEvery, put, takeLatest } from 'redux-saga/effects';
 import axios from 'axios';
 
 // Create the rootSaga generator function
 function* rootSaga() {
     yield takeEvery('FETCH_MOVIES', fetchAllMovies);
-    yield takeEvery('FETCH_GENRE', fetchMovieGenre);
+    // yield takeEvery('FETCH_GENRE', fetchMovieGenre);
+    yield takeLatest('FETCH_GENRE', fetchMovieGenre);
     yield takeEvery('FETCH_SELECTED_MOVIE', selectedMovie);
 }
 
@@ -37,10 +38,11 @@ function* fetchMovieGenre(movieId){
     try {
         console.log('this is the path:', path);
         const genres = yield axios.get(`/api/genre/${path}`);
-        console.log('get all genres data', genres.data);
+        console.log('this is the genres.data', genres.data);
         yield put({ type: 'SET_GENRE', payload: genres.data });
     } catch {
         console.log('get genres error');
+    
     }
 }
 
@@ -82,12 +84,14 @@ const selectedMovie = (state = [], action) => {
 // Used to store the movie genres
 const genreStore = (state = {}, action) => {
     switch (action.type) {
-        case 'SET_GENRE':
+        case 'SETTING_GENRE':
             return action.payload;
         default:
             return state;
     }
 }
+
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 // Create one store that all components can use
 const storeInstance = createStore(
@@ -96,8 +100,10 @@ const storeInstance = createStore(
         genreStore,
         selectedMovie
     }),
+    composeEnhancers(
+        applyMiddleware(sagaMiddleware, logger),
+        )
     // Add sagaMiddleware to our store
-    applyMiddleware(sagaMiddleware, logger),
 );
 
 // Pass rootSaga into our sagaMiddleware
