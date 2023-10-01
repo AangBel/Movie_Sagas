@@ -20,16 +20,17 @@ import {
   Button,
 } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
-// import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { useHistory } from "react-router-dom";
+import { useState } from "react";
 
-// import Button from '@mui/material/Button';
 
-export default function Details({ thing }) {
+export default function Details() {
   const dispatch = useDispatch();
   const history = useHistory();
   const selectedMovie = useSelector((store) => store.selectedMovie);
   const genreStore = useSelector((store) => store.genreStore);
+
+  const [genres, setGenres]= useState([]);
 
   console.log("this is the genreStore", genreStore);
 //   console.log("this is the movieId", movieId);
@@ -45,7 +46,9 @@ export default function Details({ thing }) {
   //   const movieId = selectedMovie.id;
   //   console.log("this is the pickedMovieStore.id", movieId);
 
-  // dispatch({ type: "SET_GENRE", payload:genreStore});
+  dispatch({ type: "SET_GENRE", payload:genreStore});
+  console.log("this is the genreStore after dispatch", genreStore);
+  
 
   function backToHome() {
     console.log("going back to home page");

@@ -14,8 +14,8 @@ import axios from 'axios';
 // Create the rootSaga generator function
 function* rootSaga() {
     yield takeEvery('FETCH_MOVIES', fetchAllMovies);
-    // yield takeEvery('FETCH_GENRE', fetchMovieGenre);
-    yield takeLatest('FETCH_GENRE', fetchMovieGenre);
+    yield takeEvery('FETCH_GENRE', fetchMovieGenre);
+    // yield takeLatest('FETCH_GENRE', fetchMovieGenre);
     yield takeEvery('FETCH_SELECTED_MOVIE', selectedMovie);
 }
 
