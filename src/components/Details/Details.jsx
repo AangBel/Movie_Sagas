@@ -24,6 +24,7 @@ import { useHistory } from "react-router-dom";
 import { useState } from "react";
 import { takeEvery, put, takeLatest, call } from "redux-saga/effects";
 
+
 export default function Details() {
   const dispatch = useDispatch();
   const history = useHistory();
@@ -35,37 +36,41 @@ export default function Details() {
     payload: genre,
   });
 
-//   function* fetchGenreSaga(action) {
-//     try {
-//       const movieId = action.payload;
-//       const genre = yield call(fetchMovieGenre, movieId);
-//       yield put(fetchMovieGenre(genre));
-//     } catch (error) {
-//       console.log("get genres error from details.jsx");
-//     }
-//   }
+  //   function* fetchGenreSaga(action) {
+  //     try {
+  //       const movieId = action.payload;
+  //       const genre = yield call(fetchMovieGenre, movieId);
+  //       yield put(fetchMovieGenre(genre));
+  //     } catch (error) {
+  //       console.log("get genres error from details.jsx");
+  //     }
+  //   }
   //   const [genres, setGenres] = useState([]);
-
+  
   console.log("this is the genreStore", genreStore);
-  //   console.log("this is the movieId", movieId);
 
+
+  //   console.log("this is the movieId", movieId);
+  
   console.log("the current movie is:", selectedMovie.id);
 
+
+  
   //   const movieIdentification = movie.id;
   //   console.log('this is the movieIdentification movie Id', movieIdentification);
-
+  
   //   const movieId = selectedMovie.id;
   //   console.log("this is the pickedMovieStore.id", movieId);
-
+  
   //   dispatch({ type: "SET_GENRE", payload: genre });
   //   console.log("this is the genreStore after dispatch", genreStore);
-
+  
   function backToHome() {
     console.log("going back to home page");
     history.push("/");
-  }
+}
 
-  return (
+return (
     <Box>
       <section className="details">
         <Grid
@@ -75,17 +80,23 @@ export default function Details() {
           alignItems="center"
           justifyContent="center"
           sx={{ minHeight: "100vh", maxWidth: "100vh" }}
-        >
+          >
           <Grid item xs={12} sm={6} md={4} lg={3} key={selectedMovie.id}>
             <Card key={selectedMovie}>
               <CardMedia
                 component="img"
                 src={selectedMovie.poster}
                 alt={selectedMovie.title}
-              />
+                />
               <CardContent>
                 <Typography variant="h3">{selectedMovie.title}</Typography>
                 <Typography>{selectedMovie.description}</Typography>
+                <Typography>
+                  Genres:{" "}
+                  {genreStore.map((genre, index) => (
+                    <span key={index}>{genre.name}</span>
+                  ))}
+                </Typography>
               </CardContent>
             </Card>
           </Grid>
@@ -96,4 +107,5 @@ export default function Details() {
       </Button>
     </Box>
   );
+  
 }

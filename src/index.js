@@ -15,6 +15,8 @@ import axios from "axios";
 function* rootSaga() {
   yield takeEvery("FETCH_MOVIES", fetchAllMovies);
   yield takeEvery("FETCHING_GENRE", fetchMovieGenre);
+//   yield takeEvery("FETCHING_GENRE", fetchGenreSaga);
+
   // yield takeLatest('FETCH_GENRE', fetchMovieGenre);
   yield takeEvery("FETCH_SELECTED_MOVIE", selectedMovie);
 }
@@ -47,7 +49,7 @@ function* fetchMovieGenre(movieId) {
 function* fetchGenreSaga(action) {
     try {
       const movieId = action.payload;
-      const genre = yield call(fetchMovieGenre, movieId);
+      const genre = yield(fetchMovieGenre, movieId);
       yield put(fetchMovieGenre(genre));
     } catch (error) {
       console.log("get genres error from details.jsx");
@@ -91,7 +93,7 @@ const selectedMovie = (state = [], action) => {
 };
 
 // Used to store the movie genres
-const genreStore = (state = {}, action) => {
+const genreStore = (state = [], action) => {
   switch (action.type) {
     case "SETTING_GENRE":
       return action.payload;
