@@ -9,7 +9,6 @@ import Grid from "@mui/material/Grid";
 import { Box, CardActionArea, CardMedia } from "@mui/material";
 import Typography from "@mui/material/Typography";
 
-
 function MovieList() {
   const dispatch = useDispatch();
   const history = useHistory();
@@ -24,20 +23,18 @@ function MovieList() {
       "pushToDetails function has been triggered aka clicked a movie, this is the movie",
       movie.id
     );
-    dispatch({ type: "SET_SELECTED_MOVIE", payload: movie });
-    dispatch({ type: "FETCHING_GENRE", payload: movie.id });
-    // dispatch({ type: "SETTING_GENRE", payload: genre });
-
-    history.push("/details");
+    // dispatch({ type: "SET_SELECTED_MOVIE", payload: movie });
+    dispatch({ type: "FETCHING_GENRE", payload: {movie: movie, history:history} });
+    // dispatch({ type: "SETTING_GENRE" });
   }
 
   return (
-    <Box style={{marginBottom: '90px'}}>
+    <Box style={{ marginBottom: "90px" }}>
       <section className="movies">
-        <Grid container spacing={7} marginTop="10px" marginBottom="80px" >
+        <Grid container spacing={7} marginTop="10px" marginBottom="80px">
           {movies.map((movie) => (
             <Grid item xs={12} sm={6} md={4} lg={3} key={movie.id}>
-              <Card sx={{boxShadow: "5px 10px #f5f5f5"}}>
+              <Card sx={{ boxShadow: "5px 10px #f5f5f5" }}>
                 <CardActionArea key={movie.id}>
                   <CardMedia
                     component="img"
@@ -47,9 +44,13 @@ function MovieList() {
                     value={movie.id}
                   />
                   <CardContent>
-                    <Typography fontFamily="Reem Kufi"
-                    color="#2c698d"
-                    variant="h4">{movie.title}</Typography>
+                    <Typography
+                      fontFamily="Reem Kufi"
+                      color="#2c698d"
+                      variant="h4"
+                    >
+                      {movie.title}
+                    </Typography>
                   </CardContent>
                 </CardActionArea>
               </Card>

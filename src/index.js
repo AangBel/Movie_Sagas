@@ -15,7 +15,8 @@ import axios from "axios";
 function* rootSaga() {
   yield takeEvery("FETCH_MOVIES", fetchAllMovies);
   yield takeEvery("FETCHING_GENRE", fetchMovieGenre);
-//   yield takeEvery("FETCHING_GENRE", fetchGenreSaga);
+//   yield takeEvery("SETTING_GENRE", fetchGenreSaga);
+  //   yield takeEvery("FETCHING_GENRE", fetchGenreSaga);
 
   // yield takeLatest('FETCH_GENRE', fetchMovieGenre);
   yield takeEvery("FETCH_SELECTED_MOVIE", selectedMovie);
@@ -32,30 +33,35 @@ function* fetchAllMovies() {
   }
 }
 
-function* fetchMovieGenre(movieId) {
-  const path = movieId.payload;
-  //get all genres from the DB
+function* fetchMovieGenre(action) {
+  const path = action.payload.movie.id;
+  const movie = action.payload.movie;
+  const history = action.payload.history;
+
   try {
     console.log("this is the path:", path);
+    
     const genres = yield axios.get(`/api/genre/${path}`);
     console.log("this is the genres.data", genres.data);
     yield put({ type: "SET_GENRE", payload: genres.data });
+    yield put({type: "SET_SELECTED_MOVIE", payload: movie});
+
+    history.push("/Details")
   } catch {
     console.log("get genres error");
   }
 }
 
-
 function* fetchGenreSaga(action) {
-    try {
-      const movieId = action.payload;
-      const genre = yield(fetchMovieGenre, movieId);
-      yield put(fetchMovieGenre(genre));
-    } catch (error) {
-      console.log("get genres error from details.jsx");
-    }
+  try {
+    console.log("in the fetch genre saga");
+    const movieId = action.payload;
+    const genre = yield (fetchMovieGenre, movieId);
+    yield put(fetchMovieGenre(genre));
+  } catch (error) {
+    console.log("get genres error from details.jsx");
   }
-
+}
 
 // function* fetchSelectedMovie(action){
 //     try {
@@ -93,9 +99,9 @@ const selectedMovie = (state = [], action) => {
 };
 
 // Used to store the movie genres
-const genreStore = (state = [], action) => {
+const genres = (state = [], action) => {
   switch (action.type) {
-    case "SETTING_GENRE":
+    case "SET_GENRE":
       return action.payload;
     default:
       return state;
@@ -108,7 +114,7 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const storeInstance = createStore(
   combineReducers({
     movies,
-    genreStore,
+    genres,
     selectedMovie,
   }),
   composeEnhancers(applyMiddleware(sagaMiddleware, logger))

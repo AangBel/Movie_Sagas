@@ -1,14 +1,6 @@
 //bring in MATERIAL UI FOR STUFF LIKE BUTTONS
 // TODO: When a movie poster is clicked, a user should be brought to the /details view for that movie.
-// -we'd have to do the route to /details
-// -the <p> that shows the details
-// - writing code that goes to GET? the details from the database?
-// - we'd be creating an onClick for the movie image
-// - we'd be writing the onClick function
-// - a space for the genres, title, and description
-//----- bring in description
-// - a back to list BUTTON
-// - setting up the button to take us back to the /Home/List Page
+
 
 import {
   CardContent,
@@ -18,39 +10,33 @@ import {
   Card,
   Box,
   Button,
+  List,
+  ListSubheader,
+  ListItem,
+  ListItemText
 } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { useState } from "react";
 import { takeEvery, put, takeLatest, call } from "redux-saga/effects";
+import GenreData from "../GenreData";
 
 
 export default function Details() {
+    console.log('in the details function');
   const dispatch = useDispatch();
   const history = useHistory();
   const selectedMovie = useSelector((store) => store.selectedMovie);
   const genreStore = useSelector((store) => store.genreStore);
 
-  const fetchMovieGenre = (genre) => ({
-    type: "FETCHING_GENRE",
-    payload: genre,
-  });
 
-  //   function* fetchGenreSaga(action) {
-  //     try {
-  //       const movieId = action.payload;
-  //       const genre = yield call(fetchMovieGenre, movieId);
-  //       yield put(fetchMovieGenre(genre));
-  //     } catch (error) {
-  //       console.log("get genres error from details.jsx");
-  //     }
-  //   }
-  //   const [genres, setGenres] = useState([]);
-  
-  console.log("this is the genreStore", genreStore);
+//  console.log("this is the genreStore", genreStore);  
 
 
-  //   console.log("this is the movieId", movieId);
+
+ const genres = useSelector((store) => store.genres);
+ console.log("this is the genreStore from Genre data", genres);
+
   
   console.log("the current movie is:", selectedMovie.id);
 
@@ -91,12 +77,14 @@ return (
               <CardContent>
                 <Typography variant="h3">{selectedMovie.title}</Typography>
                 <Typography>{selectedMovie.description}</Typography>
-                <Typography>
-                  Genres:{" "}
-                  {genreStore.map((genre, index) => (
-                    <span key={index}>{genre.name}</span>
-                  ))}
-                </Typography>
+                <List>
+            <ListSubheader>Genres:</ListSubheader>
+            {genres.map((genre, i) => (
+              <ListItem key={i}>
+                <ListItemText primary={genre.name} />
+              </ListItem>
+            ))}
+          </List>
               </CardContent>
             </Card>
           </Grid>
