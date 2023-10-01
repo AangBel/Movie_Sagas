@@ -53,7 +53,11 @@ export default function Details() {
   return (
     <Box>
       <section className="details">
-        <Grid container spacing={2}>
+        <Grid container spacing={7}
+        direction="column"
+        alignItems="center"
+        justifyContent="center"
+        sx={{ minHeight: '100vh', maxWidth:'100vh'}}>
           <Grid item xs={12} sm={6} md={4} lg={3} key={selectedMovie.id}>
             <Card key={selectedMovie}>
               <CardMedia
