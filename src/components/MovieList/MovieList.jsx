@@ -18,35 +18,39 @@ function MovieList() {
     dispatch({ type: "FETCH_MOVIES" });
   }, []);
 
-  function pushToDetails(){
-    console.log('pushToDetails function has been triggered aka clicked a movie')
-    history.push('/details');
+  function pushToDetails(movie) {
+    console.log(
+      "pushToDetails function has been triggered aka clicked a movie, this is the movie", movie.id
+    );
+    dispatch({ type: "SET_SELECTED_MOVIE", payload: movie});
+    history.push("/details");
 }
 
   return (
-      <Box>
-        <section className="movies">
-          <Grid container spacing={7}>
-            {movies.map((movie) => (
-              <Grid item xs={12} sm={6} md={4} lg={3} key={movie.id}>
-                <Card>
-                  <CardActionArea>
-                    <CardMedia
-                      component="img"
-                      src={movie.poster}
-                      alt={movie.title}
-                      onClick={pushToDetails}
-                    />
-                    <CardContent>
-                      <Typography variant="h3">{movie.title}</Typography>
-                    </CardContent>
-                  </CardActionArea>
-                </Card>
-              </Grid>
-            ))}
-          </Grid>
-        </section>
-      </Box>
+    <Box>
+      <section className="movies">
+        <Grid container spacing={7}>
+          {movies.map((movie) => (
+            <Grid item xs={12} sm={6} md={4} lg={3} key={movie.id}>
+              <Card>
+                <CardActionArea key={movie.id}>
+                  <CardMedia
+                    component="img"
+                    src={movie.poster}
+                    alt={movie.title}
+                    onClick={() => pushToDetails(movie)}
+                    value={movie.id}
+                  />
+                  <CardContent>
+                    <Typography variant="h3">{movie.title}</Typography>
+                  </CardContent>
+                </CardActionArea>
+              </Card>
+            </Grid>
+          ))}
+        </Grid>
+      </section>
+    </Box>
   );
 }
 

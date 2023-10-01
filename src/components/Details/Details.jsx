@@ -30,15 +30,19 @@ export default function Details() {
   const dispatch = useDispatch();
   const history = useHistory();
   const movies = useSelector((store) => store.movies);
-  const genres = useSelector((store) => store.genres);
+  const selectedMovie = useSelector((store) => store.selectedMovie);
 
-  useEffect(() => {
-    dispatch({ type: "FETCH_MOVIES" });
-    dispatch({ type: "FETCH_GENRES" });
-  }, []);
+  //   const genres = useSelector((store) => store.genres);
+
+  console.log(`the movie clicked on was ${movies.id}`);
+  console.log("the current movie is:", selectedMovie.id);
+
+  const movieId = selectedMovie.id;
+  console.log('this is the pickedMovieStore.id', movieId);
+
 
   function backToHome() {
-    console.log("going back to home page")
+    console.log("going back to home page");
     history.push("/");
   }
 
@@ -46,29 +50,27 @@ export default function Details() {
     <Box>
       <section className="details">
         <Grid container spacing={2}>
-          {movies.map((movie) => (
-            <Grid item xs={12} sm={6} md={4} lg={3} key={movie.id}>
-              <Card>
-                <CardMedia
-                  component="img"
-                  src={movie.poster}
-                  alt={movie.title}
-                />
-                <CardContent>
-                  <Typography variant="h3">{movie.title}</Typography>
-                  <Typography>{movie.description}</Typography>
-                 {genres.
+          <Grid item xs={12} sm={6} md={4} lg={3} key={selectedMovie.id}>
+            <Card key={selectedMovie}>
+              <CardMedia
+                component="img"
+                //   src={clickedMovie.id}
+                src={selectedMovie.poster}
+                alt={selectedMovie.title}
+              />
+              <CardContent>
+                <Typography variant="h3">{selectedMovie.title}</Typography>
+                <Typography>{selectedMovie.description}</Typography>
+                {/* {genres.
                  filter((genre) =>
                  genre.title
                  )
                  .map((genre) => (
                         <Typography key={genre.id}>{genre.name}</Typography>
-                    ))}
-                </CardContent>
-              </Card>
-            </Grid>
-          ))}
-
+                    ))} */}
+              </CardContent>
+            </Card>
+          </Grid>
         </Grid>
       </section>
       <Button variant="contained" onClick={backToHome}>
