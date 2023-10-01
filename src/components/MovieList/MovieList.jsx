@@ -37,7 +37,7 @@ function MovieList() {
         <Grid container spacing={7}>
           {movies.map((movie) => (
             <Grid item xs={12} sm={6} md={4} lg={3} key={movie.id}>
-              <Card>
+              <Card sx={{boxShadow: "5px 10px #bfbfbf"}}>
                 <CardActionArea key={movie.id}>
                   <CardMedia
                     component="img"
@@ -48,7 +48,7 @@ function MovieList() {
                   />
                   <CardContent>
                     <Typography fontFamily="Reem Kufi"
-                    color="#9B9492"
+                    color="#2c698d"
                     variant="h3">{movie.title}</Typography>
                   </CardContent>
                 </CardActionArea>
