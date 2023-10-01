@@ -22,6 +22,7 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { useState } from "react";
+import { takeEvery, put, takeLatest, call } from "redux-saga/effects";
 
 export default function Details() {
   const dispatch = useDispatch();
@@ -29,7 +30,21 @@ export default function Details() {
   const selectedMovie = useSelector((store) => store.selectedMovie);
   const genreStore = useSelector((store) => store.genreStore);
 
-  const [genres, setGenres] = useState([]);
+  const fetchMovieGenre = (genre) => ({
+    type: "FETCHING_GENRE",
+    payload: genre,
+  });
+
+//   function* fetchGenreSaga(action) {
+//     try {
+//       const movieId = action.payload;
+//       const genre = yield call(fetchMovieGenre, movieId);
+//       yield put(fetchMovieGenre(genre));
+//     } catch (error) {
+//       console.log("get genres error from details.jsx");
+//     }
+//   }
+  //   const [genres, setGenres] = useState([]);
 
   console.log("this is the genreStore", genreStore);
   //   console.log("this is the movieId", movieId);
@@ -42,8 +57,8 @@ export default function Details() {
   //   const movieId = selectedMovie.id;
   //   console.log("this is the pickedMovieStore.id", movieId);
 
-  dispatch({ type: "SET_GENRE", payload: genreStore });
-  console.log("this is the genreStore after dispatch", genreStore);
+  //   dispatch({ type: "SET_GENRE", payload: genre });
+  //   console.log("this is the genreStore after dispatch", genreStore);
 
   function backToHome() {
     console.log("going back to home page");
@@ -53,11 +68,14 @@ export default function Details() {
   return (
     <Box>
       <section className="details">
-        <Grid container spacing={7}
-        direction="column"
-        alignItems="center"
-        justifyContent="center"
-        sx={{ minHeight: '100vh', maxWidth:'100vh'}}>
+        <Grid
+          container
+          spacing={7}
+          direction="column"
+          alignItems="center"
+          justifyContent="center"
+          sx={{ minHeight: "100vh", maxWidth: "100vh" }}
+        >
           <Grid item xs={12} sm={6} md={4} lg={3} key={selectedMovie.id}>
             <Card key={selectedMovie}>
               <CardMedia
