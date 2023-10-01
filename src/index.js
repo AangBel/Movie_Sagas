@@ -31,11 +31,12 @@ function* fetchAllMovies() {
         
 }
 
-function* fetchMovieGenre(id){
+function* fetchMovieGenre(movieId){
+    const path = movieId.payload;
     //get all genres from the DB
     try {
-        const genres = yield axios.get(`/api/genre/${id}`);
-        console.log(`this is the id: ${id}`);
+        console.log('this is the path:', path);
+        const genres = yield axios.get(`/api/genre/${path}`);
         console.log('get all genres data', genres.data);
         yield put({ type: 'SET_GENRE', payload: genres.data });
     } catch {
