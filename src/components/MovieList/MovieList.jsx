@@ -32,12 +32,12 @@ function MovieList() {
   }
 
   return (
-    <Box>
+    <Box style={{marginBottom: '90px'}}>
       <section className="movies">
-        <Grid container spacing={7}>
+        <Grid container spacing={7} marginTop="10px" marginBottom="80px" >
           {movies.map((movie) => (
             <Grid item xs={12} sm={6} md={4} lg={3} key={movie.id}>
-              <Card sx={{boxShadow: "5px 10px #bfbfbf"}}>
+              <Card sx={{boxShadow: "5px 10px #f5f5f5"}}>
                 <CardActionArea key={movie.id}>
                   <CardMedia
                     component="img"
@@ -49,7 +49,7 @@ function MovieList() {
                   <CardContent>
                     <Typography fontFamily="Reem Kufi"
                     color="#2c698d"
-                    variant="h3">{movie.title}</Typography>
+                    variant="h4">{movie.title}</Typography>
                   </CardContent>
                 </CardActionArea>
               </Card>
