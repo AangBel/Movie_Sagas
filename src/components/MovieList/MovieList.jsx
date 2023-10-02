@@ -31,9 +31,9 @@ function MovieList() {
   }
 
   return (
-    <Box style={{ marginBottom: "90px" }}>
+    <Box style={{ marginBottom: "90px", flexGrow:1 }}>
       <section className="movies">
-        <Grid container spacing={7} marginTop="10px" marginBottom="80px">
+        <Grid container spacing={8} marginTop="10px" marginBottom="80px">
           {movies.map((movie) => (
             <Grid item xs={12} sm={6} md={4} lg={3} key={movie.id}>
               <Card sx={{ boxShadow: "5px 10px #f5f5f5" }}>

@@ -31,7 +31,7 @@ export default function Details() {
 
   return (
     <section className="text">
-      <Box sx={{ pt: 5, height: "100px" }}>
+      <Box sx={{ pt: 8, height: "100px", mr:"100px", ml:"100px" }}>
         <Grid
           container
           direction="column"
@@ -40,9 +40,10 @@ export default function Details() {
             maxWidth: "300vh",
             alignContent: "center",
             boxShadow: "5px 10px #f5f5f5",
+            marginBottom:"30px"
           }}
         >
-          <Grid item xs={12} sm={6} md={4} lg={3} key={selectedMovie.id}>
+          <Grid item xs={12} sm={6} md={4} lg={3} key={selectedMovie.id} >
             <Card key={selectedMovie} sx={{ fontFamily: "Reem Kufi" }}>
               <CardMedia
                 component="img"
