@@ -23,9 +23,11 @@ function MovieList() {
       "pushToDetails function has been triggered aka clicked a movie, this is the movie",
       movie.id
     );
-    // dispatch({ type: "SET_SELECTED_MOVIE", payload: movie });
-    dispatch({ type: "FETCHING_GENRE", payload: {movie: movie, history:history} });
-    // dispatch({ type: "SETTING_GENRE" });
+
+    dispatch({
+      type: "FETCHING_GENRE",
+      payload: { movie: movie, history: history },
+    });
   }
 
   return (
