@@ -1,8 +1,8 @@
 import { HashRouter as Router, Route } from "react-router-dom";
 import "./App.css";
+// import "../Details/Details.css";
 import MovieList from "../MovieList/MovieList";
 import Details from "../Details/Details";
-import GenreData from "../GenreData";
 
 function App() {
   return (
