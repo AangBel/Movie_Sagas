@@ -21,24 +21,32 @@ const pool = new Pool({
         rejectUnauthorized: false
     }
 })
+pool.on('connect', () => {
+    console.log('The magical pool thing connected to your postgres database. :)');
+})
 
-if (process.env.DATABASE_URL) {
-    pool = new pg.Pool({
-        connectionString: process.env.DATABASE_URL,
-        ssl: {
-            rejectUnauthorized: false
-        }
-    });
-}
+// Spit out a console log when the pool errors:
+pool.on('error', (error) => {
+    console.log('The magical pool has errored. Bummer.', error);
+})
+
+// if (process.env.DATABASE_URL) {
+//     pool = new pg.Pool({
+//         connectionString: process.env.DATABASE_URL,
+//         ssl: {
+//             rejectUnauthorized: false
+//         }
+//     });
+// }
 // When we're running this app on our own computer
 // we'll connect to the postgres database that is 
 // also running on our computer (localhost)
-else {
-    pool = new pg.Pool({
-        host: 'localhost',
-        port: 5432,
-        database: 'saga_movies_weekend', 
-    });
-}
+// else {
+//     pool = new pg.Pool({
+//         host: 'localhost',
+//         port: 5432,
+//         database: 'saga_movies_weekend', 
+//     });
+// }
 
 module.exports = pool;
