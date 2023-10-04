@@ -33,9 +33,9 @@ function MovieList() {
 
   return (
     <Box style={{ marginBottom: "90px", flexGrow:1 }}>
-         <Button variant="contained" onClick={() => history.push("/MovieForm")}>
+         {/* <Button variant="contained" onClick={() => history.push("/MovieForm")}>
         Add a movie!
-      </Button>
+      </Button> */}
       <section className="movies">
         <Grid container spacing={8} marginTop="10px" marginBottom="80px">
           {movies.map((movie) => (
