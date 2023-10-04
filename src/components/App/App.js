@@ -18,9 +18,9 @@ function App() {
           <Route path="/Details" exact>
             <Details />
           </Route>
-        <Route exact path="/MovieForm">
-          <MovieForm />
-        </Route>
+        {/* <Route exact path="/MovieForm">
+          <MovieForm /> */}
+        {/* </Route> */}
         </Router>
       </div>
     </div>
