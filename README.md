@@ -1,3 +1,6 @@
+<img width="1496" alt="Movie Saga " src="https://github.com/AangBel/Movie_Sagas/assets/119378254/cbbad16e-0b43-47a1-8815-276dd35340ab">
+<img width="1496" alt="Movie Sagas movies page " src="https://github.com/AangBel/Movie_Sagas/assets/119378254/420462aa-034f-46ab-9fd6-a001a6288ebc">
+<img width="1496" alt="Gone Girl movie example" src="https://github.com/AangBel/Movie_Sagas/assets/119378254/e35f80b8-e071-4060-b35a-ea548139acee">
 **Title: Movie Database for Prime Students**
 
 **Description:**
@@ -35,9 +38,6 @@ This project offers a unique blend of educational value and entertainment. Prime
 **Get Started:**
 Ready to explore the Movie Database for Prime Students? Visit our website and begin your journey into the world of movies while honing your Redux Sagas skills.
 
-<img width="1496" alt="Movie Saga " src="https://github.com/AangBel/Movie_Sagas/assets/119378254/cbbad16e-0b43-47a1-8815-276dd35340ab">
-<img width="1496" alt="Movie Sagas movies page " src="https://github.com/AangBel/Movie_Sagas/assets/119378254/420462aa-034f-46ab-9fd6-a001a6288ebc">
-<img width="1496" alt="Gone Girl movie example" src="https://github.com/AangBel/Movie_Sagas/assets/119378254/e35f80b8-e071-4060-b35a-ea548139acee">
 
 
 The Movie Database for Prime Students is your gateway to the world of movies and web development. Join us in this exciting journey today.
